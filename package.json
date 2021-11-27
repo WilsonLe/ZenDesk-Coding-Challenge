@@ -1,0 +1,26 @@
+{
+  "name": "zendesk-coding-challenge-wilsone",
+  "version": "1.0.0",
+  "repository": "https://github.com/WilsonLe/ZenDesk-Coding-Challenge",
+  "author": "Wilson <43991506+WilsonLe@users.noreply.github.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "concurrently -n FRONTEND,FUNCTIONS -c bold.green,bold.red \"yarn start:frontend\" \"yarn start:backend\"",
+    "start:frontend": "yarn --cwd frontend start",
+    "start:backend": "yarn --cwd functions start",
+    "install": "yarn --cwd frontend install && yarn --cwd functions install",
+    "test": "yarn --cwd frontend test && yarn --cwd functions test",
+    "build": "yarn --cwd frontend build && yarn --cwd functions build",
+    "lint": "yarn --cwd frontend lint && yarn --cwd functions lint",
+    "format": "yarn --cwd frontend format && yarn --cwd functions format"
+  },
+  "pre-commit": [
+    "lint",
+    "format",
+    "test"
+  ],
+  "dependencies": {
+    "concurrently": "^6.4.0",
+    "pre-commit": "^1.2.2"
+  }
+}
