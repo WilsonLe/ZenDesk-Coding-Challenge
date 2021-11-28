@@ -9,8 +9,16 @@ describe('getTickets callable', () => {
     wrapped = testEnv.wrap(myFunctions.getTickets);
   });
 
-  test('it returns status 200', async () => {
-    const res = await wrapped({});
-    expect(res).toBeDefined();
+  it('returns status 200', async () => {
+    const data = await wrapped({ url: undefined });
+    expect(data).toBeDefined();
+  });
+  it('returns correct data', async () => {
+    const data = await wrapped({ url: undefined });
+    expect(data.tickets).toBeDefined();
+    expect(data.tickets).toHaveLength(10);
+    expect(data.count).toBeDefined();
+    expect(data.count).toBe(101);
+    expect(data.meta).toBeDefined();
   });
 });

@@ -1,2 +1,1 @@
-export { TicketData, GetTicketsResData } from './TicketData';
-export type URL = string;
+export { TicketData, GetTicketsResData, URL, TicketMeta } from './TicketData';

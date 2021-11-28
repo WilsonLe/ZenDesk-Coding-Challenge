@@ -1,3 +1,4 @@
+export type URL = string;
 export type TicketData = {
   url: URL;
   id: number;
@@ -47,4 +48,17 @@ export type GetTicketsResData = {
     prev: URL;
     next: URL;
   };
+};
+
+export type LengthResData = {
+  count: {
+    value: number;
+    refreshed_at: string;
+  };
+};
+
+export type TicketMeta = {
+  has_more: boolean;
+  prev: URL;
+  next: URL;
 };
