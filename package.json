@@ -10,6 +10,9 @@
     "start:backend": "yarn --cwd functions start",
     "install": "yarn --cwd frontend install && yarn --cwd functions install",
     "test": "yarn --cwd frontend test && yarn --cwd functions test",
+    "decrypt": "env-cmd ./bin/decrypt.sh",
+    "decrypt:ci": "./bin/decrypt.sh",
+    "encrypt": "env-cmd ./bin/encrypt.sh",
     "build": "yarn --cwd frontend build && yarn --cwd functions build",
     "lint": "yarn --cwd frontend lint && yarn --cwd functions lint",
     "format": "yarn --cwd frontend format && yarn --cwd functions format"
@@ -21,6 +24,7 @@
   ],
   "dependencies": {
     "concurrently": "^6.4.0",
+    "env-cmd": "^10.1.0",
     "pre-commit": "^1.2.2"
   }
 }

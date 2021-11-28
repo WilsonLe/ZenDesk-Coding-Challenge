@@ -1,5 +1,4 @@
 import * as functions from 'firebase-functions';
+import getTicketsHandler from './Tickets/getTickets';
 
-export const helloWorld = functions.https.onCall((data, context) => {
-  return 'HELLO WORLD';
-});
+export const getTickets = functions.https.onCall(getTicketsHandler);

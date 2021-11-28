@@ -3,13 +3,14 @@ import { testEnv } from './firebase.config';
 import { WrappedFunction } from 'firebase-functions-test/lib/main';
 import * as myFunctions from '.';
 
-describe('hello world callable', () => {
+describe('getTickets callable', () => {
   let wrapped: WrappedFunction;
   beforeAll(() => {
-    wrapped = testEnv.wrap(myFunctions.helloWorld);
+    wrapped = testEnv.wrap(myFunctions.getTickets);
   });
-  test('it returns "HELLO WORLD"', async () => {
+
+  test('it returns status 200', async () => {
     const res = await wrapped({});
-    expect(res).toBe('HELLO WORLD');
+    expect(res).toBeDefined();
   });
 });

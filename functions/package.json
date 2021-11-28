@@ -5,7 +5,7 @@
     "build": "tsc",
     "serve": "yarn build && firebase emulators:start --only functions",
     "shell": "yarn && firebase functions:shell",
-    "start": "tsc && firebase emulators:start",
+    "start": "tsc -w | firebase emulators:start",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log",
     "test": "yarn jest",
@@ -16,6 +16,8 @@
   },
   "main": "dist/index.js",
   "dependencies": {
+    "axios": "^0.24.0",
+    "dotenv": "^10.0.0",
     "firebase-admin": "^9.8.0",
     "firebase-functions": "^3.14.1"
   },
@@ -30,6 +32,7 @@
     "jest": "^27.3.1",
     "prettier": "^2.5.0",
     "ts-jest": "^27.0.7",
+    "ts-node": "^10.4.0",
     "typescript": "^3.8.0"
   },
   "private": true
