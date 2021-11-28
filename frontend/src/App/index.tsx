@@ -6,7 +6,7 @@ interface Props {}
  * Main App component
  */
 const App: FC<Props> = () => {
-  const { tickets, setTickets, errorMessage, setErrorMessage } = useTickets();
+  const { tickets, errorMessage } = useTickets();
   return (
     <>
       {tickets ? (

@@ -6,7 +6,12 @@ import { getTickets } from './getTickets';
 /**
  * custom hook to get tickets, states of errors (if any) while fetching tickets from server
  */
-const useTickets = () => {
+const useTickets: () => {
+  tickets: TicketData[] | undefined;
+  setTickets: React.Dispatch<React.SetStateAction<TicketData[] | undefined>>;
+  errorMessage: string | undefined;
+  setErrorMessage: React.Dispatch<React.SetStateAction<string | undefined>>;
+} = () => {
   const [tickets, setTickets] = useState<TicketData[] | undefined>(undefined);
   const [errorMessage, setErrorMessage] = useState<string | undefined>();
   useEffect(() => {
@@ -20,6 +25,7 @@ const useTickets = () => {
         if (error instanceof FirebaseError) {
           setErrorMessage(error.message);
         } else {
+          setErrorMessage('Unexpected error has occured');
           console.log(error);
         }
       }

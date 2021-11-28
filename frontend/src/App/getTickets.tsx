@@ -5,7 +5,7 @@ import { TicketData } from '../types';
 /**
  * get ticket data from sv by invoking httpsCallable function and return the reponse data
  */
-const getTickets = async () => {
+const getTickets: () => Promise<TicketData[]> = async () => {
   const res = await httpsCallable<null, { tickets: TicketData[] }>(
     fn,
     'getTickets'
