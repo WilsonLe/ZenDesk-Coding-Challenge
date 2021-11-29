@@ -19,7 +19,5 @@ jobs:
           yarn install
       - name: Decrypt Secrets
         run: yarn decrypt:ci
-      - name: Build development
-        run: 'yarn run build'
       - name: Running test
         run: 'yarn test && firebase emulators:exec \"yarn test:ci\"'
