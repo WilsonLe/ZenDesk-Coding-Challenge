@@ -22,4 +22,4 @@ jobs:
       - name: Build development
         run: 'yarn run build'
       - name: Running test
-        run: 'yarn test'
+        run: 'yarn test && firebase emulators:exec \"yarn test:ci\"'

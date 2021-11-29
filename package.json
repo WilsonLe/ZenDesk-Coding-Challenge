@@ -10,6 +10,7 @@
     "start:backend": "yarn --cwd functions start",
     "install": "yarn --cwd frontend install && yarn --cwd functions install",
     "test": "yarn --cwd frontend test && yarn --cwd functions test",
+    "test:ci": "echo \"Not implemented yet\" && exit 0",
     "decrypt": "env-cmd ./bin/decrypt.sh",
     "decrypt:ci": "./bin/decrypt.sh",
     "encrypt": "env-cmd ./bin/encrypt.sh",
