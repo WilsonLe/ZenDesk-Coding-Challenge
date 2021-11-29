@@ -1,6 +1,6 @@
 export type {
   TicketData,
-  GetTicketsResData,
   URL,
   TicketMeta,
+  TicketDataWithFields,
 } from './TicketData';

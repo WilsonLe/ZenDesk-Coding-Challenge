@@ -1,10 +1,10 @@
 import React from 'react';
 import { render, screen, cleanup, waitFor } from '@testing-library/react';
-import App from '.';
-import { TicketData } from '../types';
+import { BrowserRouter } from 'react-router-dom';
+import { TicketData } from '../../types';
 import { getTickets } from './getTickets';
+import Main from '.';
 
-afterEach(cleanup);
 const tickets: TicketData[] = [
   {
     url: 'https://zccwilsonle.zendesk.com/api/v2/tickets/25.json',
@@ -62,10 +62,18 @@ jest.mock('./getTickets', () => {
   };
 });
 
-describe('Testing App Component', () => {
+afterEach(cleanup);
+
+describe('Testing Main Component', () => {
   it('Tickets renders LOADING... before fetching data', async () => {
-    render(<App />);
-    expect(screen.queryByText('LOADING...')).toBeInTheDocument();
+    render(
+      <BrowserRouter>
+        <Main />
+      </BrowserRouter>
+    );
+    await waitFor(() =>
+      expect(screen.queryByText('LOADING...')).toBeInTheDocument()
+    );
     expect(getTickets).toHaveBeenCalledTimes(1);
     expect(getTickets).toHaveBeenCalledWith(undefined);
     await waitFor(() =>
@@ -73,7 +81,11 @@ describe('Testing App Component', () => {
     );
   });
   it('Ticket renders data correctly after fetching data', async () => {
-    render(<App />);
+    render(
+      <BrowserRouter>
+        <Main />
+      </BrowserRouter>
+    );
     await waitFor(() =>
       expect(screen.queryByText('LOADING...')).not.toBeInTheDocument()
     );

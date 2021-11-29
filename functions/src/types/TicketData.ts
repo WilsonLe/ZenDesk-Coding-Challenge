@@ -62,3 +62,10 @@ export type TicketMeta = {
   prev: URL;
   next: URL;
 };
+
+// ticket data from calling using id is different from ticket data calling everything. it has one extra key "field" that maps to array of presumably strings
+export type TicketDataWithFields = TicketData & { fields: string[] };
+
+export type GetTicketResData = {
+  ticket: TicketDataWithFields;
+};

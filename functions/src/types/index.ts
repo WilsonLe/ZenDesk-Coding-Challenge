@@ -1,1 +1,8 @@
-export { TicketData, GetTicketsResData, URL, TicketMeta } from './TicketData';
+export {
+  TicketData,
+  GetTicketsResData,
+  URL,
+  TicketMeta,
+  TicketDataWithFields as TicketDataWithField,
+  GetTicketResData,
+} from './TicketData';

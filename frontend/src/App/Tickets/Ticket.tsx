@@ -8,7 +8,7 @@ interface Props {
 const Ticket: FC<Props> = ({ ticket }) => {
   return (
     <li key={ticket.id}>
-      <a href="#" className="block hover:bg-gray-50">
+      <div className="block hover:bg-gray-50">
         <div className="px-4 py-4 sm:px-6">
           <div className="flex items-center justify-between">
             <p className="text-sm font-medium text-indigo-600 truncate">
@@ -108,7 +108,7 @@ const Ticket: FC<Props> = ({ ticket }) => {
             </div>
           </div>
         </div>
-      </a>
+      </div>
     </li>
   );
 };

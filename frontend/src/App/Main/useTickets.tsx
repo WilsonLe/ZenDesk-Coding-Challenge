@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { FirebaseError } from '@firebase/app';
-import { TicketData, TicketMeta, URL } from '../types';
+import { TicketData, TicketMeta, URL } from '../../types';
 import { getTickets } from './getTickets';
 
 /**

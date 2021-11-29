@@ -37,21 +37,9 @@ export type TicketData = {
   allow_attachments: boolean;
 };
 
-export type GetTicketsResData = {
-  tickets: TicketData[];
-  meta: {
-    has_more: boolean;
-    after_cursor: string;
-    before_cursor: string;
-  };
-  links: {
-    prev: URL;
-    next: URL;
-  };
-};
-
 export type TicketMeta = {
   has_more: boolean;
   prev: URL;
   next: URL;
 };
+export type TicketDataWithFields = TicketData & { fields: string[] };

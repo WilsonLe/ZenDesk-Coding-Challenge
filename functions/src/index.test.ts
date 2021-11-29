@@ -22,3 +22,19 @@ describe('getTickets callable', () => {
     expect(data.meta).toBeDefined();
   });
 });
+
+describe('getTicket callable', () => {
+  let wrapped: WrappedFunction;
+  beforeAll(() => {
+    wrapped = testEnv.wrap(myFunctions.getTicket);
+  });
+
+  it('returns status 200', async () => {
+    const data = await wrapped({ ticketId: '2' });
+    expect(data).toBeDefined();
+  });
+  it('returns correct data', async () => {
+    const data = await wrapped({ ticketId: '2' });
+    expect(data.ticket).toBeDefined();
+  });
+});

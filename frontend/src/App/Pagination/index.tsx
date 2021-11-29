@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid';
 import { FirebaseError } from '@firebase/app';
 import { TicketData, TicketMeta } from '../../types';
-import { getTickets } from '../getTickets';
+import { getTickets } from '../Main/getTickets';
 
 interface Props {
   count: number;
@@ -13,6 +13,7 @@ interface Props {
   setError: React.Dispatch<
     React.SetStateAction<Error | FirebaseError | undefined>
   >;
+  setIsLoadingPage: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Pagination: FC<Props> = ({
@@ -22,15 +23,20 @@ const Pagination: FC<Props> = ({
   setMeta,
   setTickets,
   setError,
+  setIsLoadingPage,
 }) => {
   const [start, setStart] = useState<number>(1);
   const [end, setEnd] = useState<number>(start + perPage - 1);
   const [prevAction, setPrevAction] = useState<'prev' | 'next' | undefined>();
   const [atUpperEdge, setAtUpperEdge] = useState<boolean>(false);
   const [atLowerEdge, setAtLowerEdge] = useState<boolean>(true);
+  const [disablePrev, setDisablePrev] = useState<boolean>(false);
+  const [disableNext, setDisableNext] = useState<boolean>(false);
 
   const prevHandler = async () => {
     if (meta && (prevAction === 'next' || meta.has_more)) {
+      setIsLoadingPage(true);
+      setDisablePrev(true);
       try {
         const { meta: newMeta, tickets } = await getTickets(meta.prev);
         setMeta(newMeta);
@@ -38,6 +44,7 @@ const Pagination: FC<Props> = ({
         setStart(start - perPage);
         setEnd(end - perPage);
         setPrevAction('prev');
+        setDisablePrev(false);
       } catch (error) {
         setError(
           new Error(
@@ -53,6 +60,8 @@ const Pagination: FC<Props> = ({
   };
   const nextHandler = async () => {
     if (meta && (prevAction === 'prev' || meta.has_more)) {
+      setIsLoadingPage(true);
+      setDisableNext(true);
       try {
         const { meta: newMeta, tickets } = await getTickets(meta.next);
         setMeta(newMeta);
@@ -60,6 +69,7 @@ const Pagination: FC<Props> = ({
         setStart(start + perPage);
         setEnd(end + perPage);
         setPrevAction('next');
+        setDisableNext(false);
       } catch (error) {
         setError(
           new Error(
@@ -84,6 +94,7 @@ const Pagination: FC<Props> = ({
       <div className="flex-1 flex justify-between sm:hidden">
         {!atLowerEdge && (
           <button
+            disabled={disablePrev}
             onClick={prevHandler}
             className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
           >
@@ -92,6 +103,7 @@ const Pagination: FC<Props> = ({
         )}
         {!atUpperEdge && (
           <button
+            disabled={disableNext}
             onClick={nextHandler}
             className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
           >
@@ -116,6 +128,7 @@ const Pagination: FC<Props> = ({
             >
               {!atLowerEdge && (
                 <button
+                  disabled={disablePrev}
                   onClick={prevHandler}
                   className="w-18 relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 justify-center"
                 >
@@ -126,6 +139,7 @@ const Pagination: FC<Props> = ({
               )}
               {!atUpperEdge && (
                 <button
+                  disabled={disableNext}
                   onClick={nextHandler}
                   className="w-18 srelative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 justify-center"
                 >
