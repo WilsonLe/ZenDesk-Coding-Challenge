@@ -5,7 +5,7 @@ const testEnv = functionsTest(
     storageBucket: process.env.STORAGE_BUCKET,
     projectId: process.env.PROJECT_ID,
   },
-  '../serviceAccountKey.json'
+  './secrets.json'
 );
 
 export { testEnv };

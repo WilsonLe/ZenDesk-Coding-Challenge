@@ -3,7 +3,8 @@ name: Testing
 
 env:
   FIREBASE_TOKEN: '${{secrets.FIREBASE_TOKEN}}'
-
+  FRONTEND_SECRETS_PASSPHRASE: '${{secrets.FRONTEND_SECRETS_PASSPHRASE}}'
+  FUNCTIONS_SECRETS_PASSPHRASE: '${{secrets.FUNCTIONS_SECRETS_PASSPHRASE}}'
 jobs:
   development_build_and_preview:
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
@@ -16,7 +17,7 @@ jobs:
           sudo yarn global add firebase-tools
           sudo apt-get install xvfb
           yarn install
-      - name: Build development
-        run: 'yarn run build'
+      - name: Decrypt Secrets
+        run: yarn decrypt:ci
       - name: Running test
         run: 'yarn test'

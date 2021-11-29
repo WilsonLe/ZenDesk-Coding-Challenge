@@ -5,7 +5,8 @@ name: Deploying
       - production
 env:
   FIREBASE_TOKEN: '${{secrets.FIREBASE_TOKEN}}'
-
+  FRONTEND_SECRETS_PASSPHRASE: '${{secrets.FRONTEND_SECRETS_PASSPHRASE}}'
+  FUNCTIONS_SECRETS_PASSPHRASE: '${{secrets.FUNCTIONS_SECRETS_PASSPHRASE}}'
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
@@ -16,9 +17,11 @@ jobs:
         run: |
           sudo yarn global add firebase-tools
           yarn install
-      - name: Build development
-        run: 'yarn run build'
+      - name: Decrypt Secrets
+        run: yarn decrypt:ci
       - name: Running test
         run: 'yarn test'
+      - name: Build development
+        run: 'yarn run build'
       - name: Deploy
         run: 'firebase deploy'
