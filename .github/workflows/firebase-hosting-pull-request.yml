@@ -20,4 +20,4 @@ jobs:
       - name: Decrypt Secrets
         run: yarn decrypt:ci
       - name: Running test
-        run: 'yarn test && firebase emulators:exec \"yarn test:ci\"'
+        run: 'yarn test'
