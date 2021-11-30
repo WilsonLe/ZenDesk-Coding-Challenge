@@ -61,20 +61,20 @@ jest.mock('./getTicket', () => {
 afterEach(cleanup);
 
 describe('Testing TicketDetail Component', () => {
-  it('Tickets renders LOADING... before fetching data', async () => {
+  it('Tickets renders Fetching... before fetching data', async () => {
     render(
       <BrowserRouter>
         <TicketDetail />
       </BrowserRouter>
     );
     await waitFor(() =>
-      expect(screen.queryByText('LOADING...')).toBeInTheDocument()
+      expect(screen.queryByText('Fetching...')).toBeInTheDocument()
     );
     expect(getTicket).toHaveBeenCalledTimes(1);
     //expect empty string because when render TicketDetail, does not have an URL to parse, thus its undefined. TicketDetail implementation automatically pass in '' when URL parses to undefined
     expect(getTicket).toHaveBeenCalledWith('');
     await waitFor(() =>
-      expect(screen.queryByText('LOADING...')).not.toBeInTheDocument()
+      expect(screen.queryByText('Fetching...')).not.toBeInTheDocument()
     );
   });
   it('Ticket renders data correctly after fetching data', async () => {
@@ -84,7 +84,7 @@ describe('Testing TicketDetail Component', () => {
       </BrowserRouter>
     );
     await waitFor(() =>
-      expect(screen.queryByText('LOADING...')).not.toBeInTheDocument()
+      expect(screen.queryByText('Fetching...')).not.toBeInTheDocument()
     );
     expect(
       screen.queryByText('magna reprehenderit nisi est cillum')
