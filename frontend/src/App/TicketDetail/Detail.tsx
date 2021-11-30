@@ -107,7 +107,9 @@ const Detail: FC<Props> = ({ ticket }) => {
               Updated At
             </dt>
             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              {ticket.updated_at ? ticket.updated_at : 'null'}
+              {ticket.updated_at
+                ? new Date(ticket.updated_at).toUTCString()
+                : 'null'}
             </dd>
           </div>
           <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -115,7 +117,9 @@ const Detail: FC<Props> = ({ ticket }) => {
               Created At
             </dt>
             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              {ticket.created_at ? ticket.created_at : 'null'}
+              {ticket.created_at
+                ? new Date(ticket.created_at).toUTCString()
+                : 'null'}
             </dd>
           </div>
           <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -123,7 +127,7 @@ const Detail: FC<Props> = ({ ticket }) => {
               Due at
             </dt>
             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              {ticket.due_at ? ticket.due_at : 'null'}
+              {ticket.due_at ? new Date(ticket.due_at).toUTCString() : 'null'}
             </dd>
           </div>
           <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
