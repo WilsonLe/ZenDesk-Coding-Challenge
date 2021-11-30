@@ -8,9 +8,10 @@ interface Props {
   setError: React.Dispatch<
     React.SetStateAction<Error | FirebaseError | undefined>
   >;
+  setLoading: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
-const Alert: FC<Props> = ({ error, setError }) => {
+const Alert: FC<Props> = ({ error, setError, setLoading }) => {
   const [hasError, setHasError] = useState<boolean>(false);
   useEffect(() => {
     setHasError(error ? true : false);
@@ -21,7 +22,7 @@ const Alert: FC<Props> = ({ error, setError }) => {
     <Transition.Root show={hasError} as={Fragment}>
       <Dialog
         as="div"
-        className="fixed z-10 inset-0 overflow-y-auto"
+        className="fixed z-50 inset-0 overflow-y-auto"
         initialFocus={cancelButtonRef}
         onClose={() => {
           setError(undefined);
@@ -83,7 +84,10 @@ const Alert: FC<Props> = ({ error, setError }) => {
                 <button
                   type="button"
                   className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm"
-                  onClick={() => setError(undefined)}
+                  onClick={() => {
+                    setLoading(error?.message);
+                    setError(undefined);
+                  }}
                   ref={cancelButtonRef}
                 >
                   Okay

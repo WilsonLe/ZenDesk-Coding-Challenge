@@ -6,17 +6,17 @@ export type TicketData = {
   via: any; // unclear typings
   created_at: string;
   updated_at: string;
-  type: null;
+  type: string | null;
   subject: string;
   raw_subject: string;
   description: string;
-  priority: null;
+  priority: string | null;
   status: 'open' | 'close';
   recipient: null;
   requester_id: number;
   submitter_id: number;
   assignee_id: number;
-  organization_id: number;
+  organization_id: number | null;
   group_id: number;
   collaborator_ids: string[];
   follower_ids: string[];

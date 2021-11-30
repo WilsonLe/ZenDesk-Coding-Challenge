@@ -1,5 +1,11 @@
 import React from 'react';
-import { render, screen, cleanup, waitFor } from '@testing-library/react';
+import {
+  render,
+  screen,
+  cleanup,
+  waitFor,
+  fireEvent,
+} from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { TicketData } from '../../types';
 import { getTickets } from './getTickets';
@@ -56,7 +62,7 @@ jest.mock('./getTickets', () => {
   return {
     getTickets: jest.fn().mockResolvedValue({
       tickets,
-      count: 101,
+      count: 1,
       meta: { has_more: true, prev: 'mock_url', next: 'mock_url' },
     }),
   };
@@ -64,30 +70,41 @@ jest.mock('./getTickets', () => {
 
 afterEach(cleanup);
 
-describe('Testing Main Component', () => {
-  it('Tickets renders LOADING... before fetching data', async () => {
+describe('Testing Main Component With 1 Ticket', () => {
+  it('Renders Fetching... before fetching data', async () => {
     render(
       <BrowserRouter>
         <Main />
       </BrowserRouter>
     );
     await waitFor(() =>
-      expect(screen.queryByText('LOADING...')).toBeInTheDocument()
+      expect(screen.queryByText('Fetching...')).toBeInTheDocument()
     );
     expect(getTickets).toHaveBeenCalledTimes(1);
     expect(getTickets).toHaveBeenCalledWith(undefined);
     await waitFor(() =>
-      expect(screen.queryByText('LOADING...')).not.toBeInTheDocument()
+      expect(screen.queryByText('Fetching...')).not.toBeInTheDocument()
     );
   });
-  it('Ticket renders data correctly after fetching data', async () => {
+  it('Renders 1 out of 1 pages', async () => {
     render(
       <BrowserRouter>
         <Main />
       </BrowserRouter>
     );
     await waitFor(() =>
-      expect(screen.queryByText('LOADING...')).not.toBeInTheDocument()
+      expect(screen.queryByText('Fetching...')).not.toBeInTheDocument()
+    );
+    expect(screen.queryByText('1/1')).toBeInTheDocument();
+  });
+  it('Renders data correctly after fetching data', async () => {
+    render(
+      <BrowserRouter>
+        <Main />
+      </BrowserRouter>
+    );
+    await waitFor(() =>
+      expect(screen.queryByText('Fetching...')).not.toBeInTheDocument()
     );
     expect(
       screen.queryByText('voluptate dolor deserunt ea deserunt')
@@ -100,5 +117,20 @@ describe('Testing Main Component', () => {
     expect(screen.queryByText('do')).toBeInTheDocument();
     expect(screen.queryByText('est')).toBeInTheDocument();
     expect(screen.queryByText('labore')).toBeInTheDocument();
+  });
+  it('Does not render Fetching... when click next because there is only 1 ticket', async () => {
+    render(
+      <BrowserRouter>
+        <Main />
+      </BrowserRouter>
+    );
+    await waitFor(() =>
+      expect(screen.queryByText('Fetching...')).not.toBeInTheDocument()
+    );
+
+    fireEvent.click(screen.getByText('Next'));
+    await waitFor(() =>
+      expect(screen.queryByText('Fetching...')).not.toBeInTheDocument()
+    );
   });
 });

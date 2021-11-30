@@ -5,6 +5,7 @@ import Tickets from '../Tickets';
 import { FirebaseError } from '@firebase/app';
 import { useTickets } from './useTickets';
 import { useNetwork } from '../useNetwork';
+import Pagination from '../Pagination';
 interface Props {}
 
 /**
@@ -23,7 +24,7 @@ const Main: FC<Props> = () => {
       setError(undefined);
     }
   }, [isOnline]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<string | undefined>();
 
   const { tickets, setTickets, count, meta, setMeta } = useTickets(
     error,
@@ -31,31 +32,50 @@ const Main: FC<Props> = () => {
   );
 
   useEffect(() => {
-    setIsLoading(tickets ? false : true);
+    setLoading(tickets ? undefined : 'Fetching...');
   }, [tickets]);
 
   return (
     <>
-      <div className="h-screen w-screen bg-gray-50 flex flex-col justify-center items-center overflow-hidden">
-        <div className="px-4 py-5 border-b sm:px-6">
-          <h3 className="text-lg leading-6 font-medium text-gray-900">
+      <div className="overflow-y-scroll">
+        <div className="border border-gray-200 bg-white shadow-md fixed top-0 left-0 z-10 w-full flex flex-row justify-center items-center">
+          <h3 className="max-w-4xl w-full px-4 py-5 text-xl leading-6 font-bold text-gray-900">
             Tickets
           </h3>
         </div>
         {tickets && count && (
-          <div className="max-w-4xl sm:mx-6 lg:mx-8 h-3/4 overflow-scroll border border-gray-200 rounded-md">
-            <Tickets
-              setTickets={setTickets}
-              tickets={tickets}
-              setError={setError}
-              count={count}
-              meta={meta}
-              setMeta={setMeta}
-            />
+          <div className="w-full flex flex-row justify-center items-center">
+            <div className="max-w-4xl w-full absolute top-20 sm:border sm:border-gray-300 sm:rounded-md">
+              {!loading && (
+                <div className="pb-20">
+                  <Tickets
+                    setTickets={setTickets}
+                    tickets={tickets}
+                    setError={setError}
+                    count={count}
+                    meta={meta}
+                    setMeta={setMeta}
+                  />
+                </div>
+              )}
+              <div className="w-full m-0 fixed bottom-0 left-0 h-20 bg-white z-10 border-t border-gray-200 flex flex-row justify-center items-center">
+                <Pagination
+                  count={count}
+                  perPage={10}
+                  meta={meta}
+                  setMeta={setMeta}
+                  setTickets={setTickets}
+                  setError={setError}
+                  setLoading={setLoading}
+                />
+              </div>
+            </div>
           </div>
         )}
-        <Alert error={error} setError={setError} />
-        {isLoading && <Loading />}
+        {loading && <Loading loading={loading} />}
+        {error && (
+          <Alert error={error} setError={setError} setLoading={setLoading} />
+        )}
       </div>
     </>
   );
