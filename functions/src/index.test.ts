@@ -16,7 +16,7 @@ describe('getTickets callable', () => {
   it('returns correct data', async () => {
     const data = await wrapped({ url: undefined });
     expect(data.tickets).toBeDefined();
-    expect(data.tickets).toHaveLength(10);
+    expect(data.tickets).toHaveLength(25);
     expect(data.count).toBeDefined();
     expect(data.count).toBe(101);
     expect(data.meta).toBeDefined();

@@ -14,7 +14,7 @@ const getTicketsHandler: (data?: { url: URL | undefined }) => Promise<{
     const ticketRes = await axios.get(
       url
         ? url
-        : 'https://zccwilsonle.zendesk.com/api/v2/tickets?page[size]=10',
+        : 'https://zccwilsonle.zendesk.com/api/v2/tickets?page[size]=25',
       {
         auth: {
           username: secrets.email || '',
