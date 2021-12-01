@@ -61,7 +61,7 @@ const Main: FC<Props> = () => {
               <div className="w-full m-0 fixed bottom-0 left-0 h-20 bg-white z-10 border-t border-gray-200 flex flex-row justify-center items-center">
                 <Pagination
                   count={count}
-                  perPage={10}
+                  perPage={25}
                   meta={meta}
                   setMeta={setMeta}
                   setTickets={setTickets}
