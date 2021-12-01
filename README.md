@@ -36,16 +36,11 @@ Access my site at [https://zcc-wilsonle.web.app](https://zcc-wilsonle.web.app)
 
 ## Screenshots
 
-[<img alt="Screenshot number 1" width="240px" src="https://i.ibb.co/R9NpY18/Screen-Shot-2021-11-28-at-11-13-54-PM.png" />](https://i.ibb.co/R9NpY18/Screen-Shot-2021-11-28-at-11-13-54-PM.png)
-[<img alt="Screenshot number 2" width="240px" src="https://i.ibb.co/6nLjZ8b/Screen-Shot-2021-11-28-at-11-16-40-PM.png" />](https://i.ibb.co/6nLjZ8b/Screen-Shot-2021-11-28-at-11-16-40-PM.png)
+[<img alt="All tickets" width="240px" src="https://i.ibb.co/R3JZPcy/tickets.png" />](https://i.ibb.co/R3JZPcy/tickets.png)
+[<img alt="Loading screen" width="240px" src="https://i.ibb.co/cL9Mpqg/fetching.png" />](https://i.ibb.co/cL9Mpqg/fetching.png)
 
-[<img alt="Screenshot number 3" width="240px" src="https://i.ibb.co/rFXKGn9/Screen-Shot-2021-11-28-at-11-18-06-PM.png" />](https://i.ibb.co/rFXKGn9/Screen-Shot-2021-11-28-at-11-18-06-PM.png)
-[<img alt="Screenshot number 4" width="240px" src="https://i.ibb.co/tB7FTgn/Screen-Shot-2021-11-28-at-11-24-01-PM.png" />](https://i.ibb.co/tB7FTgn/Screen-Shot-2021-11-28-at-11-24-01-PM.png)
-
-[<img alt="Screenshot number 5" width="240px" src="https://i.ibb.co/NVvJN3v/Screen-Shot-2021-11-28-at-11-25-55-PM.png" />](https://i.ibb.co/NVvJN3v/Screen-Shot-2021-11-28-at-11-25-55-PM.png)
-[<img alt="Screenshot number 6" width="240px" src="https://i.ibb.co/K6cC25r/Screen-Shot-2021-11-28-at-11-30-11-PM.png" />](https://i.ibb.co/K6cC25r/Screen-Shot-2021-11-28-at-11-30-11-PM.png)
-
-[<img alt="Screenshot number 7" width="480px" src="https://i.ibb.co/3T4j3Ww/Screen-Shot-2021-11-28-at-11-19-30-PM.png" />](https://i.ibb.co/3T4j3Ww/Screen-Shot-2021-11-28-at-11-19-30-PM.png)
+[<img alt="Error screen" width="240px" src="https://i.ibb.co/ydLwRdQ/error.png" />](https://i.ibb.co/ydLwRdQ/error.png)
+[<img alt="Ticket detail screen" width="240px" src="https://i.ibb.co/rZDB9NK/detail.png" />](https://i.ibb.co/rZDB9NK/detail.png)
 
 ## Technologies
 
