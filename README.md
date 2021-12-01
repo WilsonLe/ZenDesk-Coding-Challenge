@@ -73,7 +73,7 @@ firebase init
 
 - Create functions/src/secrets.json and frontend/src/secrets.json from example found in functions/src and frontend/src
 
-- Create .env at root with from example found in root. The passphrase will encrypt/decrypt secret files
+- Create .env at root from example found in root. The passphrase will encrypt/decrypt secret files
 
 - To encrypt file:
 
